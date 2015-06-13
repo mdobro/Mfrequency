@@ -26,7 +26,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         musicMan.setFrequency(20)
         slider.minimumValue = 20
         slider.maximumValue = 5000
-        
         musicMan.initHelp()
     }
     
