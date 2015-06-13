@@ -13,6 +13,10 @@
 		D97C69891B2C757400590068 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D97C69881B2C757400590068 /* Images.xcassets */; };
 		D97C698C1B2C757400590068 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97C698A1B2C757400590068 /* LaunchScreen.xib */; };
 		D97C69981B2C757400590068 /* MfrequencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97C69971B2C757400590068 /* MfrequencyTests.swift */; };
+		D97C69A31B2C86B600590068 /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D97C69A21B2C86B600590068 /* OBSlider.m */; };
+		D97C69A71B2C89EB00590068 /* toneGen.m in Sources */ = {isa = PBXBuildFile; fileRef = D97C69A61B2C89EB00590068 /* toneGen.m */; };
+		D97C69AB1B2C97E000590068 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D97C69AA1B2C97E000590068 /* CoreAudio.framework */; };
+		D97C69AF1B2C98D300590068 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D97C69AE1B2C98D300590068 /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,13 @@
 		D97C69911B2C757400590068 /* MfrequencyTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MfrequencyTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D97C69961B2C757400590068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D97C69971B2C757400590068 /* MfrequencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MfrequencyTests.swift; sourceTree = "<group>"; };
+		D97C69A11B2C86B600590068 /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
+		D97C69A21B2C86B600590068 /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
+		D97C69A41B2C86EA00590068 /* Mfrequency-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Mfrequency-Bridging-Header.h"; path = "../Mfrequency-Bridging-Header.h"; sourceTree = "<group>"; };
+		D97C69A51B2C89CC00590068 /* toneGen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toneGen.h; sourceTree = "<group>"; };
+		D97C69A61B2C89EB00590068 /* toneGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = toneGen.m; sourceTree = "<group>"; };
+		D97C69AA1B2C97E000590068 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D97C69AE1B2C98D300590068 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +54,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D97C69AF1B2C98D300590068 /* AudioToolbox.framework in Frameworks */,
+				D97C69AB1B2C97E000590068 /* CoreAudio.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +103,14 @@
 		D97C697F1B2C757400590068 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D97C69A51B2C89CC00590068 /* toneGen.h */,
+				D97C69A61B2C89EB00590068 /* toneGen.m */,
+				D97C69A11B2C86B600590068 /* OBSlider.h */,
+				D97C69A21B2C86B600590068 /* OBSlider.m */,
 				D97C69801B2C757400590068 /* Info.plist */,
+				D97C69A41B2C86EA00590068 /* Mfrequency-Bridging-Header.h */,
+				D97C69AE1B2C98D300590068 /* AudioToolbox.framework */,
+				D97C69AA1B2C97E000590068 /* CoreAudio.framework */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -212,7 +232,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D97C69A71B2C89EB00590068 /* toneGen.m in Sources */,
 				D97C69841B2C757400590068 /* ViewController.swift in Sources */,
+				D97C69A31B2C86B600590068 /* OBSlider.m in Sources */,
 				D97C69821B2C757400590068 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,6 +317,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mfrequency-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -333,6 +356,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mfrequency-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -345,6 +369,7 @@
 				INFOPLIST_FILE = Mfrequency/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mfrequency-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -355,6 +380,7 @@
 				INFOPLIST_FILE = Mfrequency/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mfrequency-Bridging-Header.h";
 			};
 			name = Release;
 		};

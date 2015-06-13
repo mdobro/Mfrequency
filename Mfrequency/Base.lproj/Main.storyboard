@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Mfrequency" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,10 +16,106 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FCI-WV-xih" customClass="OBSlider">
+                                <rect key="frame" x="37" y="86" width="526" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="CAv-JO-8df"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="cNP-xF-n4n"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjC-vb-5R7">
+                                <rect key="frame" x="276" y="54" width="49" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Frequency (Hz):" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0b-UU-B9d">
+                                <rect key="frame" x="234" y="31" width="133" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ai8-cR-TKe">
+                                <rect key="frame" x="281" y="127" width="38" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JID-y2-Vxt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3s-lq-2Iu">
+                                <rect key="frame" x="229" y="176" width="142" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Save Frequency">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tVs-Od-YJH"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U9W-gi-uD8" userLabel="Frequencies Table">
+                                <rect key="frame" x="180" y="260" width="240" height="340"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="CGm-fg-fu9"/>
+                                </constraints>
+                                <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Frequencies" id="34O-a6-GXc">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="34O-a6-GXc" id="JKU-7Q-Pmv">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="LM3-GO-7lc"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="RU8-gP-VVD"/>
+                                    <outletCollection property="gestureRecognizers" destination="XYL-gz-ole" appends="YES" id="5Ex-Id-BL7"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="FCI-WV-xih" firstAttribute="top" secondItem="qjC-vb-5R7" secondAttribute="bottom" constant="8" symbolic="YES" id="1Fw-VL-tF3"/>
+                            <constraint firstItem="U9W-gi-uD8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="41Q-cK-Zb3"/>
+                            <constraint firstItem="J3s-lq-2Iu" firstAttribute="top" secondItem="ai8-cR-TKe" secondAttribute="bottom" constant="13" id="BxZ-2q-wDg"/>
+                            <constraint firstItem="FCI-WV-xih" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="23" id="DWk-F8-8fu"/>
+                            <constraint firstItem="qjC-vb-5R7" firstAttribute="top" secondItem="s0b-UU-B9d" secondAttribute="bottom" constant="8" symbolic="YES" id="ENF-Av-1Iv"/>
+                            <constraint firstItem="qjC-vb-5R7" firstAttribute="centerX" secondItem="FCI-WV-xih" secondAttribute="centerX" id="FEh-u0-7lL"/>
+                            <constraint firstItem="U9W-gi-uD8" firstAttribute="centerX" secondItem="J3s-lq-2Iu" secondAttribute="centerX" id="OiH-Wy-OBp"/>
+                            <constraint firstItem="J3s-lq-2Iu" firstAttribute="centerX" secondItem="ai8-cR-TKe" secondAttribute="centerX" id="RXk-y7-uMl"/>
+                            <constraint firstItem="U9W-gi-uD8" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="SZ6-bX-zuM"/>
+                            <constraint firstItem="ai8-cR-TKe" firstAttribute="top" secondItem="FCI-WV-xih" secondAttribute="bottom" constant="8" symbolic="YES" id="ecC-tA-Bge"/>
+                            <constraint firstItem="qjC-vb-5R7" firstAttribute="centerX" secondItem="s0b-UU-B9d" secondAttribute="centerX" id="llE-le-Wdg"/>
+                            <constraint firstItem="s0b-UU-B9d" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="11" id="oEe-sF-Gs8"/>
+                            <constraint firstItem="ai8-cR-TKe" firstAttribute="centerX" secondItem="FCI-WV-xih" secondAttribute="centerX" id="p3B-51-kN8"/>
+                            <constraint firstItem="U9W-gi-uD8" firstAttribute="top" secondItem="J3s-lq-2Iu" secondAttribute="bottom" constant="48" id="rYY-5j-Xax"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="currentFreq" destination="qjC-vb-5R7" id="axB-Yr-I0L"/>
+                        <outlet property="longPressGesture" destination="XYL-gz-ole" id="xZI-gh-6KS"/>
+                        <outlet property="playButton" destination="ai8-cR-TKe" id="kPG-99-qyp"/>
+                        <outlet property="saveTable" destination="U9W-gi-uD8" id="lMy-Br-Wbw"/>
+                        <outlet property="slider" destination="FCI-WV-xih" id="35n-OV-fV4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="XYL-gz-ole">
+                    <connections>
+                        <action selector="CellLongPress:" destination="BYZ-38-t0r" id="sRX-83-IrV"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="U8X-B2-RIN"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
         </scene>
     </scenes>
