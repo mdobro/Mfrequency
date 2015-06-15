@@ -8,6 +8,29 @@
 
 import UIKit
 
+
+//slide for cell deletion
+extension UIView {
+    // Name this function in a way that makes sense to you...
+    // slideFromLeft, slideRight, slideLeftToRight, etc. are great alternative names
+    func slideOutToRight(duration: NSTimeInterval = 1.0, completion: () -> Void) {
+        // Create a CATransition animation
+        let slideInFromLeftTransition = CATransition()
+        
+        CATransaction.setCompletionBlock(completion)
+        
+        // Customize the animation's properties
+        slideInFromLeftTransition.type = kCATransitionPush
+        slideInFromLeftTransition.subtype = kCATransitionFromLeft
+        slideInFromLeftTransition.duration = duration
+        slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        slideInFromLeftTransition.fillMode = kCAFillModeRemoved
+        
+        // Add the animation to the View's layer
+        self.layer.addAnimation(slideInFromLeftTransition, forKey: "slideInFromLeftTransition")
+    }
+}
+
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate {
     let musicMan = Musician();
     
@@ -17,7 +40,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var currentFreq: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var saveTable: UITableView!
-    @IBOutlet var longPressGesture:UILongPressGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,16 +70,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         musicMan.setFrequency(Double(sender.value))
     }
     
-    //long press gesture
-    @IBAction func CellLongPress(sender: UILongPressGestureRecognizer) {
+    //swipe gesture
+    @IBAction func CellSwipe(sender: UISwipeGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.Ended {
             let point = sender.locationInView(saveTable)
             let toDeleteIndex = saveTable.indexPathForRowAtPoint(point)
             if toDeleteIndex != nil {
                 let cell = saveTable.cellForRowAtIndexPath(toDeleteIndex!)
-                let freq = cell?.textLabel?.text
-                masterpieces.remove(freq!)
-                saveTable.reloadData()
+                let freq = cell!.textLabel?.text
+                cell!.slideOutToRight(duration: 0.5){ () in
+                    self.masterpieces.remove(freq!)
+                    self.saveTable.reloadData()
+                }
+                cell?.textLabel?.text = ""
             }
         }
     }
@@ -77,7 +102,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let collection = Array(masterpieces)
+        var collection = Array(masterpieces)
+        collection.sort({(string1:String, string2:String) -> (Bool) in
+            let d1 = (string1 as NSString).doubleValue
+            let d2 = (string2 as NSString).doubleValue
+            if (d1 < d2) {
+                return true
+            }
+            return false
+        })
         let item = collection[indexPath.item]
         let cell = tableView.dequeueReusableCellWithIdentifier("Frequencies") as! UITableViewCell
         cell.textLabel?.text = item

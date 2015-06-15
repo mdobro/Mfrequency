@@ -59,26 +59,37 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U9W-gi-uD8" userLabel="Frequencies Table">
-                                <rect key="frame" x="180" y="260" width="240" height="340"/>
+                                <rect key="frame" x="0.0" y="260" width="600" height="340"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="CGm-fg-fu9"/>
+                                    <constraint firstAttribute="width" constant="600" id="CGm-fg-fu9"/>
                                 </constraints>
                                 <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Frequencies" id="34O-a6-GXc">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Frequencies" id="34O-a6-GXc">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="34O-a6-GXc" id="JKU-7Q-Pmv">
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" none="YES" staticText="YES"/>
+                                        </accessibility>
                                         <gestureRecognizers/>
+                                        <attributedString key="userComments">
+                                            <fragment content="asdfadsf">
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="smallSystem"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="LM3-GO-7lc"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="RU8-gP-VVD"/>
-                                    <outletCollection property="gestureRecognizers" destination="XYL-gz-ole" appends="YES" id="5Ex-Id-BL7"/>
+                                    <outletCollection property="gestureRecognizers" destination="4wS-7v-rHO" appends="YES" id="A3T-kO-JKs"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -103,19 +114,18 @@
                     </view>
                     <connections>
                         <outlet property="currentFreq" destination="qjC-vb-5R7" id="axB-Yr-I0L"/>
-                        <outlet property="longPressGesture" destination="XYL-gz-ole" id="xZI-gh-6KS"/>
                         <outlet property="playButton" destination="ai8-cR-TKe" id="kPG-99-qyp"/>
                         <outlet property="saveTable" destination="U9W-gi-uD8" id="lMy-Br-Wbw"/>
                         <outlet property="slider" destination="FCI-WV-xih" id="35n-OV-fV4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="XYL-gz-ole">
+                <swipeGestureRecognizer direction="right" id="4wS-7v-rHO">
                     <connections>
-                        <action selector="CellLongPress:" destination="BYZ-38-t0r" id="sRX-83-IrV"/>
-                        <outlet property="delegate" destination="BYZ-38-t0r" id="U8X-B2-RIN"/>
+                        <action selector="CellSwipe:" destination="BYZ-38-t0r" id="obB-NK-nT4"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="C1R-mD-Rr7"/>
                     </connections>
-                </pongPressGestureRecognizer>
+                </swipeGestureRecognizer>
             </objects>
         </scene>
     </scenes>
