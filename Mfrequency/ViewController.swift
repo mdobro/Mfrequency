@@ -114,6 +114,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let item = collection[indexPath.item]
         let cell = tableView.dequeueReusableCellWithIdentifier("Frequencies") as! UITableViewCell
         cell.textLabel?.text = item
+        cell.textLabel?.textAlignment = .Center
         return cell
     }
 
