@@ -77,9 +77,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBAction func ButtonPress(sender: AnyObject) {
         if (sender.titleLabel!!.text == "Play") {
             sender.setTitle("Stop", forState: .Normal)
+            sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
             musicMan.togglePlay()
         } else if sender.titleLabel!!.text == "Stop"{
             sender.setTitle("Play", forState: .Normal)
+            sender.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
             musicMan.togglePlay()
         } else if sender.titleLabel!!.text == "Save Frequency" {
             masterpieces.insert(currentFreq.text!)
@@ -138,6 +140,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCellWithIdentifier("Frequencies") as! UITableViewCell
         cell.textLabel?.text = item
         cell.backgroundColor = UIColor.clearColor()
+        cell.textLabel?.textAlignment = .Center
         return cell
     }
 

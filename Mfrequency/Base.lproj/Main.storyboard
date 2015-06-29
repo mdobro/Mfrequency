@@ -19,79 +19,79 @@
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gW-oe-GAc">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FCI-WV-xih" customClass="OBSlider">
-                                        <rect key="frame" x="30" y="70" width="526" height="34"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="dun-y0-IFn"/>
-                                        </constraints>
-                                        <connections>
-                                            <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="cNP-xF-n4n"/>
-                                        </connections>
-                                    </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjC-vb-5R7">
-                                        <rect key="frame" x="276" y="38" width="49" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Frequency (Hz):" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0b-UU-B9d">
-                                        <rect key="frame" x="234" y="15" width="133" height="15"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ai8-cR-TKe">
-                                        <rect key="frame" x="281" y="111" width="38" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Play">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="ButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JID-y2-Vxt"/>
-                                        </connections>
-                                    </button>
-                                    <tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U9W-gi-uD8" userLabel="Frequencies Table">
-                                        <rect key="frame" x="0.0" y="225" width="600" height="441"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Frequencies" id="34O-a6-GXc">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="34O-a6-GXc" id="JKU-7Q-Pmv">
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                                <accessibility key="accessibilityConfiguration">
-                                                    <accessibilityTraits key="traits" none="YES" staticText="YES"/>
-                                                </accessibility>
-                                                <gestureRecognizers/>
-                                                <attributedString key="userComments">
-                                                    <fragment content="asdfadsf">
-                                                        <attributes>
-                                                            <font key="NSFont" metaFont="smallSystem"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="LM3-GO-7lc"/>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="RU8-gP-VVD"/>
-                                            <outletCollection property="gestureRecognizers" destination="4wS-7v-rHO" appends="YES" id="A3T-kO-JKs"/>
-                                        </connections>
-                                    </tableView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3s-lq-2Iu">
-                                        <rect key="frame" x="222" y="170" width="142" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Save Frequency">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="ButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tVs-Od-YJH"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+<slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="FCI-WV-xih" customClass="OBSlider">
+<rect key="frame" x="30" y="70" width="526" height="34"/>
+<constraints>
+<constraint firstAttribute="height" constant="33" id="dun-y0-IFn"/>
+</constraints>
+<connections>
+<action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="cNP-xF-n4n"/>
+</connections>
+</slider>
+<label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qjC-vb-5R7">
+<rect key="frame" x="276" y="38" width="49" height="24"/>
+<fontDescription key="fontDescription" type="system" pointSize="20"/>
+<color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+<nil key="highlightedColor"/>
+</label>
+<label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Frequency (Hz):" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0b-UU-B9d">
+<rect key="frame" x="234" y="15" width="133" height="15"/>
+<fontDescription key="fontDescription" type="system" pointSize="12"/>
+<color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+<nil key="highlightedColor"/>
+</label>
+<button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ai8-cR-TKe">
+<rect key="frame" x="281" y="111" width="38" height="36"/>
+<fontDescription key="fontDescription" type="system" pointSize="20"/>
+<state key="normal" title="Play">
+<color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+</state>
+<connections>
+<action selector="ButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JID-y2-Vxt"/>
+</connections>
+</button>
+<tableView clipsSubviews="YES" tag="2" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U9W-gi-uD8" userLabel="Frequencies Table">
+<rect key="frame" x="0.0" y="225" width="600" height="441"/>
+<color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+<color key="separatorColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+<prototypes>
+<tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="Frequencies" id="34O-a6-GXc">
+<rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+<autoresizingMask key="autoresizingMask"/>
+<tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="34O-a6-GXc" id="JKU-7Q-Pmv">
+<autoresizingMask key="autoresizingMask"/>
+</tableViewCellContentView>
+<accessibility key="accessibilityConfiguration">
+<accessibilityTraits key="traits" none="YES" staticText="YES"/>
+</accessibility>
+<gestureRecognizers/>
+<attributedString key="userComments">
+<fragment content="asdfadsf">
+<attributes>
+<font key="NSFont" metaFont="smallSystem"/>
+<paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
+</attributes>
+</fragment>
+</attributedString>
+</tableViewCell>
+</prototypes>
+<connections>
+<outlet property="dataSource" destination="BYZ-38-t0r" id="LM3-GO-7lc"/>
+<outlet property="delegate" destination="BYZ-38-t0r" id="RU8-gP-VVD"/>
+<outletCollection property="gestureRecognizers" destination="4wS-7v-rHO" appends="YES" id="A3T-kO-JKs"/>
+</connections>
+</tableView>
+<button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J3s-lq-2Iu">
+<rect key="frame" x="222" y="170" width="142" height="36"/>
+<fontDescription key="fontDescription" type="system" pointSize="20"/>
+<state key="normal" title="Save Frequency">
+<color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+</state>
+<connections>
+<action selector="ButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tVs-Od-YJH"/>
+</connections>
+</button>
+</subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="qjC-vb-5R7" firstAttribute="top" secondItem="s0b-UU-B9d" secondAttribute="bottom" constant="8" symbolic="YES" id="10c-eq-SgW"/>
