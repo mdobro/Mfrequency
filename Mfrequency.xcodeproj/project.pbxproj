@@ -17,6 +17,7 @@
 		D97C69A71B2C89EB00590068 /* toneGen.m in Sources */ = {isa = PBXBuildFile; fileRef = D97C69A61B2C89EB00590068 /* toneGen.m */; };
 		D97C69AB1B2C97E000590068 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D97C69AA1B2C97E000590068 /* CoreAudio.framework */; };
 		D97C69AF1B2C98D300590068 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D97C69AE1B2C98D300590068 /* AudioToolbox.framework */; };
+		D983CC221B41BD11005AA49E /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D983CC211B41BD11005AA49E /* background.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		D97C69A61B2C89EB00590068 /* toneGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = toneGen.m; sourceTree = "<group>"; };
 		D97C69AA1B2C97E000590068 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		D97C69AE1B2C98D300590068 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D983CC211B41BD11005AA49E /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = Images.xcassets/background.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +92,9 @@
 		D97C697E1B2C757400590068 /* Mfrequency */ = {
 			isa = PBXGroup;
 			children = (
-				D97C69811B2C757400590068 /* AppDelegate.swift */,
-				D97C69831B2C757400590068 /* ViewController.swift */,
 				D97C69851B2C757400590068 /* Main.storyboard */,
+				D97C69831B2C757400590068 /* ViewController.swift */,
+				D97C69811B2C757400590068 /* AppDelegate.swift */,
 				D97C69881B2C757400590068 /* Images.xcassets */,
 				D97C698A1B2C757400590068 /* LaunchScreen.xib */,
 				D97C697F1B2C757400590068 /* Supporting Files */,
@@ -103,6 +105,7 @@
 		D97C697F1B2C757400590068 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D983CC211B41BD11005AA49E /* background.jpg */,
 				D97C69A51B2C89CC00590068 /* toneGen.h */,
 				D97C69A61B2C89EB00590068 /* toneGen.m */,
 				D97C69A11B2C86B600590068 /* OBSlider.h */,
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D97C69871B2C757400590068 /* Main.storyboard in Resources */,
+				D983CC221B41BD11005AA49E /* background.jpg in Resources */,
 				D97C698C1B2C757400590068 /* LaunchScreen.xib in Resources */,
 				D97C69891B2C757400590068 /* Images.xcassets in Resources */,
 			);
@@ -437,6 +441,7 @@
 				D97C699D1B2C757400590068 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D97C699E1B2C757400590068 /* Build configuration list for PBXNativeTarget "MfrequencyTests" */ = {
 			isa = XCConfigurationList;
@@ -445,6 +450,7 @@
 				D97C69A01B2C757400590068 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

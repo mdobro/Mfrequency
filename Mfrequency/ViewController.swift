@@ -39,15 +39,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var slider: OBSlider!
     @IBOutlet weak var currentFreq: UILabel!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var saveTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // Do any additional setup after load
+        
+        //sets background image view
+        let backImageView = UIImageView(frame: self.view.bounds)
+        backImageView.image = UIImage(named: "background.gif")
+        self.view.addSubview(backImageView)
+        self.view.sendSubviewToBack(backImageView)
+        
+        //view over background image to create fade effect over background
+        //1 = mainView
+        //2 = tableView
+
+        self.view.viewWithTag(1)?.backgroundColor = UIColor.yellowColor().colorWithAlphaComponent(0.35)
+        self.view.viewWithTag(2)?.backgroundColor = UIColor.clearColor()
+        
+        //button & slider set-up
+/*
+        currentFreq.textColor = UIColor.blueColor()
+        playButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+        saveButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
+*/
         currentFreq.text = "20.0"
-        musicMan.setFrequency(20)
         slider.minimumValue = 20
-        slider.maximumValue = 5000
+        slider.maximumValue = 20000
+        
+        //synthesiser set-up
+        musicMan.setFrequency(20)
         musicMan.initHelp()
     }
     
@@ -114,6 +137,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let item = collection[indexPath.item]
         let cell = tableView.dequeueReusableCellWithIdentifier("Frequencies") as! UITableViewCell
         cell.textLabel?.text = item
+        cell.backgroundColor = UIColor.clearColor()
         return cell
     }
 
