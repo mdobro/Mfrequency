@@ -48,7 +48,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         //sets background image view
         let backImageView = UIImageView(frame: self.view.bounds)
-        backImageView.image = UIImage(named: "background.gif")
+        backImageView.image = UIImage(named: "background.jpg")
         self.view.addSubview(backImageView)
         self.view.sendSubviewToBack(backImageView)
         
@@ -56,15 +56,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //1 = mainView
         //2 = tableView
 
-        self.view.viewWithTag(1)?.backgroundColor = UIColor.yellowColor().colorWithAlphaComponent(0.35)
+        self.view.viewWithTag(1)?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.55)
         self.view.viewWithTag(2)?.backgroundColor = UIColor.clearColor()
         
         //button & slider set-up
-/*
-        currentFreq.textColor = UIColor.blueColor()
-        playButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-        saveButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-*/
+        playButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
+        currentFreq.textColor = UIColor.blackColor()
+        //saveButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
         currentFreq.text = "20.0"
         slider.minimumValue = 20
         slider.maximumValue = 20000
