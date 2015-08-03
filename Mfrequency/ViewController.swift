@@ -132,14 +132,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             masterpieces.insert(currentFreq.text!)
             saveTable.reloadData()
         } else if sender.titleLabel!!.text == "▶️" {
-            upTimer = NSTimer(timeInterval: NSTimeInterval(0.5), target: self, selector: "upHeldDown:", userInfo: nil, repeats: true)
+            upTimer = NSTimer(timeInterval: NSTimeInterval(0.2), target: self, selector: "upHeldDown:", userInfo: nil, repeats: true)
             slider.value += 0.5
+            musicMan.setFrequency(Double(slider.value))
             currentFreq.text = "\(slider.value)"
             NSRunLoop.currentRunLoop().addTimer(upTimer, forMode: NSDefaultRunLoopMode)
         } else if sender.titleLabel!!.text == "◀️" {
-            downTimer = NSTimer(timeInterval: NSTimeInterval(0.5), target: self, selector: "downHeldDown:", userInfo: nil, repeats: true)
+            downTimer = NSTimer(timeInterval: NSTimeInterval(0.2), target: self, selector: "downHeldDown:", userInfo: nil, repeats: true)
             slider.value -= 0.5
             currentFreq.text = "\(slider.value)"
+            musicMan.setFrequency(Double(slider.value))
             NSRunLoop.currentRunLoop().addTimer(downTimer, forMode: NSDefaultRunLoopMode)
         } else if sender.titleLabel!!.text == "White Noise" {
             if pinkPlayer.playing {
@@ -164,11 +166,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func upHeldDown(sender:AnyObject) {
         slider.value += 0.5
+        musicMan.setFrequency(Double(slider.value))
         currentFreq.text = "\(slider.value)"
     }
     
     func downHeldDown(sender:AnyObject) {
         slider.value -= 0.5
+        musicMan.setFrequency(Double(slider.value))
         currentFreq.text = "\(slider.value)"
     }
     
@@ -201,6 +205,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             slider.value = 20
         }
         currentFreq.text = "\(slider.value)"
+        musicMan.setFrequency(Double(slider.value))
     }
     //swipe gesture
     @IBAction func CellSwipe(sender: UISwipeGestureRecognizer) {
