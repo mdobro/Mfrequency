@@ -31,10 +31,12 @@ extension UIView {
     }
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, RangeDelegate {
     let musicMan = Musician();
     
     var masterpieces = Set<String>()
+    
+    var selectedRange:NSIndexPath = NSIndexPath(forItem: 0, inSection: 0)
 
     @IBOutlet weak var slider: OBSlider!
     @IBOutlet weak var currentFreq: UILabel!
@@ -45,6 +47,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after load
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "deviceDidRotate:", name: UIDeviceOrientationDidChangeNotification, object: nil)
         
         //sets background image view
         let backImageView = UIImageView(frame: self.view.bounds)
@@ -63,13 +67,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         playButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
         currentFreq.textColor = UIColor.blackColor()
         //saveButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-        currentFreq.text = "20.0"
-        slider.minimumValue = 20
-        slider.maximumValue = 20000
+        currentFreq.text = "50"
         
         //synthesiser set-up
         musicMan.setFrequency(20)
         musicMan.initHelp()
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "RangeSegue" {
+            let controller = segue.destinationViewController as! RangePopoverViewController
+            controller.delegate = self
+        }
+    }
+    
+    func deviceDidRotate(notification:NSNotification) {
+        let background = self.view.subviews[0]
+        background.frame = self.view.bounds
     }
     
     @IBAction func ButtonPress(sender: AnyObject) {
@@ -93,6 +107,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         musicMan.setFrequency(Double(sender.value))
     }
     
+    //RangeDelgate
+    func rangeDidChange(range: Int) {
+        if range == 0 {
+            slider.minimumValue = 50
+            slider.maximumValue = 500
+            slider.value = 50
+        } else if range == 1 {
+            slider.minimumValue = 10
+            slider.maximumValue = 1000
+            slider.value = 10
+        } else {
+            slider.minimumValue = 20
+            slider.maximumValue = 20000
+            slider.value = 20
+        }
+        currentFreq.text = "\(slider.value)"
+    }
     //swipe gesture
     @IBAction func CellSwipe(sender: UISwipeGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.Ended {
@@ -101,7 +132,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if toDeleteIndex != nil {
                 let cell = saveTable.cellForRowAtIndexPath(toDeleteIndex!)
                 let freq = cell!.textLabel?.text
-                cell!.slideOutToRight(duration: 0.5){ () in
+                cell!.slideOutToRight(0.5){ () in
                     self.masterpieces.remove(freq!)
                     self.saveTable.reloadData()
                 }
@@ -126,7 +157,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var collection = Array(masterpieces)
-        collection.sort({(string1:String, string2:String) -> (Bool) in
+        collection.sortInPlace({(string1:String, string2:String) -> (Bool) in
             let d1 = (string1 as NSString).doubleValue
             let d2 = (string2 as NSString).doubleValue
             if (d1 < d2) {
@@ -135,18 +166,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             return false
         })
         let item = collection[indexPath.item]
-        let cell = tableView.dequeueReusableCellWithIdentifier("Frequencies") as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Frequencies")!
         cell.textLabel?.text = item
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel?.textAlignment = .Center
         return cell
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
 }
 
