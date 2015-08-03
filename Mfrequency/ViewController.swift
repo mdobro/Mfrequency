@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 //slide for cell deletion
@@ -37,12 +38,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var masterpieces = Set<String>()
     
     var selectedRange:NSIndexPath = NSIndexPath(forItem: 0, inSection: 0)
+    
+    var upTimer:NSTimer!
+    var downTimer:NSTimer!
 
+    var whitePlayer = AVAudioPlayer()
+    var pinkPlayer = AVAudioPlayer()
+    
     @IBOutlet weak var slider: OBSlider!
     @IBOutlet weak var currentFreq: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var saveTable: UITableView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,11 +75,36 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         playButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
         currentFreq.textColor = UIColor.blackColor()
         //saveButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
-        currentFreq.text = "50"
+        currentFreq.text = "50.0"
         
         //synthesiser set-up
         musicMan.setFrequency(20)
         musicMan.initHelp()
+        
+        //white & pink noise setup
+        if let path = NSBundle.mainBundle().pathForResource("White Noise", ofType: "wav") {
+            let url = NSURL(fileURLWithPath: path)
+            do {
+                whitePlayer = try AVAudioPlayer(contentsOfURL: url)
+                whitePlayer.numberOfLoops = -1
+            } catch {
+                print("white noise player failed!", true)
+            }
+        } else {
+            print("white noise file missing!")
+        }
+        
+        if let path = NSBundle.mainBundle().pathForResource("Pink Noise", ofType: "wav") {
+            let url = NSURL(fileURLWithPath: path)
+            do {
+                pinkPlayer = try AVAudioPlayer(contentsOfURL: url)
+                pinkPlayer.numberOfLoops = -1
+            } catch {
+                print("pink noise failed", true)
+            }
+        } else {
+            print("pink noise file missing!")
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -98,8 +131,53 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else if sender.titleLabel!!.text == "Save Frequency" {
             masterpieces.insert(currentFreq.text!)
             saveTable.reloadData()
+        } else if sender.titleLabel!!.text == "▶️" {
+            upTimer = NSTimer(timeInterval: NSTimeInterval(0.5), target: self, selector: "upHeldDown:", userInfo: nil, repeats: true)
+            slider.value += 0.5
+            currentFreq.text = "\(slider.value)"
+            NSRunLoop.currentRunLoop().addTimer(upTimer, forMode: NSDefaultRunLoopMode)
+        } else if sender.titleLabel!!.text == "◀️" {
+            downTimer = NSTimer(timeInterval: NSTimeInterval(0.5), target: self, selector: "downHeldDown:", userInfo: nil, repeats: true)
+            slider.value -= 0.5
+            currentFreq.text = "\(slider.value)"
+            NSRunLoop.currentRunLoop().addTimer(downTimer, forMode: NSDefaultRunLoopMode)
+        } else if sender.titleLabel!!.text == "White Noise" {
+            if pinkPlayer.playing {
+                pinkPlayer.stop()
+            }
+            if whitePlayer.playing {
+                whitePlayer.stop()
+            } else {
+                whitePlayer.play()
+            }
+        } else if sender.titleLabel!!.text == "Pink Noise" {
+            if whitePlayer.playing {
+                whitePlayer.stop()
+            }
+            if pinkPlayer.playing {
+                pinkPlayer.stop()
+            } else {
+                pinkPlayer.play()
+            }
         }
-        
+    }
+    
+    func upHeldDown(sender:AnyObject) {
+        slider.value += 0.5
+        currentFreq.text = "\(slider.value)"
+    }
+    
+    func downHeldDown(sender:AnyObject) {
+        slider.value -= 0.5
+        currentFreq.text = "\(slider.value)"
+    }
+    
+    @IBAction func releaseVolArrow(sender: UIButton) {
+        if sender.titleLabel!.text == "▶️" {
+            upTimer.invalidate()
+        } else if sender.titleLabel!.text == "◀️" {
+            downTimer.invalidate()
+        }
     }
     
     @IBAction func sliderValueChanged(sender: UISlider) {

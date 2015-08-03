@@ -19,6 +19,9 @@
 		D97C69AF1B2C98D300590068 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D97C69AE1B2C98D300590068 /* AudioToolbox.framework */; };
 		D983CC261B42E603005AA49E /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D983CC251B42E603005AA49E /* background.jpg */; };
 		D9E27CDD1B6FBC4000397ADC /* RangePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E27CDC1B6FBC4000397ADC /* RangePopoverViewController.swift */; };
+		D9E27CE41B6FE73D00397ADC /* Pink Noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = D9E27CE21B6FE73D00397ADC /* Pink Noise.wav */; };
+		D9E27CE51B6FE73D00397ADC /* White Noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = D9E27CE31B6FE73D00397ADC /* White Noise.wav */; };
+		D9E27CE71B700AF100397ADC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E27CE61B700AF100397ADC /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		D97C69AE1B2C98D300590068 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		D983CC251B42E603005AA49E /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = Images.xcassets/background.jpg; sourceTree = "<group>"; };
 		D9E27CDC1B6FBC4000397ADC /* RangePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangePopoverViewController.swift; sourceTree = "<group>"; };
+		D9E27CE21B6FE73D00397ADC /* Pink Noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Pink Noise.wav"; path = "../Pink Noise.wav"; sourceTree = "<group>"; };
+		D9E27CE31B6FE73D00397ADC /* White Noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "White Noise.wav"; path = "../White Noise.wav"; sourceTree = "<group>"; };
+		D9E27CE61B700AF100397ADC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9E27CE71B700AF100397ADC /* AVFoundation.framework in Frameworks */,
 				D97C69AF1B2C98D300590068 /* AudioToolbox.framework in Frameworks */,
 				D97C69AB1B2C97E000590068 /* CoreAudio.framework in Frameworks */,
 			);
@@ -109,12 +116,15 @@
 		D97C697F1B2C757400590068 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D9E27CE21B6FE73D00397ADC /* Pink Noise.wav */,
+				D9E27CE31B6FE73D00397ADC /* White Noise.wav */,
 				D97C69A51B2C89CC00590068 /* toneGen.h */,
 				D97C69A61B2C89EB00590068 /* toneGen.m */,
 				D97C69A11B2C86B600590068 /* OBSlider.h */,
 				D97C69A21B2C86B600590068 /* OBSlider.m */,
 				D97C69801B2C757400590068 /* Info.plist */,
 				D97C69A41B2C86EA00590068 /* Mfrequency-Bridging-Header.h */,
+				D9E27CE61B700AF100397ADC /* AVFoundation.framework */,
 				D97C69AE1B2C98D300590068 /* AudioToolbox.framework */,
 				D97C69AA1B2C97E000590068 /* CoreAudio.framework */,
 			);
@@ -220,8 +230,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9E27CE51B6FE73D00397ADC /* White Noise.wav in Resources */,
 				D97C69871B2C757400590068 /* Main.storyboard in Resources */,
 				D983CC261B42E603005AA49E /* background.jpg in Resources */,
+				D9E27CE41B6FE73D00397ADC /* Pink Noise.wav in Resources */,
 				D97C698C1B2C757400590068 /* LaunchScreen.xib in Resources */,
 				D97C69891B2C757400590068 /* Images.xcassets in Resources */,
 			);
