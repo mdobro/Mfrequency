@@ -168,6 +168,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         slider.value += 0.5
         musicMan.setFrequency(Double(slider.value))
         currentFreq.text = "\(slider.value)"
+        
     }
     
     func downHeldDown(sender:AnyObject) {
@@ -250,6 +251,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         })
         let item = collection[indexPath.item]
         let cell = tableView.dequeueReusableCellWithIdentifier("Frequencies")!
+        let myfont = UIFont(name: "Arial", size: 32)
+        cell.textLabel?.font = myfont
         cell.textLabel?.text = item
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel?.textAlignment = .Center
