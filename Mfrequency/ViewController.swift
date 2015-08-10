@@ -9,26 +9,42 @@
 import UIKit
 import AVFoundation
 
-
 //slide for cell deletion
 extension UIView {
     // Name this function in a way that makes sense to you...
     // slideFromLeft, slideRight, slideLeftToRight, etc. are great alternative names
     func slideOutToRight(duration: NSTimeInterval = 1.0, completion: () -> Void) {
         // Create a CATransition animation
-        let slideInFromLeftTransition = CATransition()
+        let slideOutToRightTransition = CATransition()
         
         CATransaction.setCompletionBlock(completion)
         
         // Customize the animation's properties
-        slideInFromLeftTransition.type = kCATransitionPush
-        slideInFromLeftTransition.subtype = kCATransitionFromLeft
-        slideInFromLeftTransition.duration = duration
-        slideInFromLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        slideInFromLeftTransition.fillMode = kCAFillModeRemoved
+        slideOutToRightTransition.type = kCATransitionPush
+        slideOutToRightTransition.subtype = kCATransitionFromLeft
+        slideOutToRightTransition.duration = duration
+        slideOutToRightTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        slideOutToRightTransition.fillMode = kCAFillModeRemoved
         
         // Add the animation to the View's layer
-        self.layer.addAnimation(slideInFromLeftTransition, forKey: "slideInFromLeftTransition")
+        self.layer.addAnimation(slideOutToRightTransition, forKey: "slideOutToRightTransition")
+    }
+    
+    func slideOutToLeft(duration: NSTimeInterval = 1.0, completion: () -> Void) {
+        // Create a CATransition animation
+        let slideOutToLeftTransition = CATransition()
+        
+        CATransaction.setCompletionBlock(completion)
+        
+        // Customize the animation's properties
+        slideOutToLeftTransition.type = kCATransitionPush
+        slideOutToLeftTransition.subtype = kCATransitionFromRight
+        slideOutToLeftTransition.duration = duration
+        slideOutToLeftTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        slideOutToLeftTransition.fillMode = kCAFillModeRemoved
+        
+        // Add the animation to the View's layer
+        self.layer.addAnimation(slideOutToLeftTransition, forKey: "slideOutToLeftTransition")
     }
 }
 
@@ -37,10 +53,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     var masterpieces = Set<String>()
     
-    var selectedRange:NSIndexPath = NSIndexPath(forItem: 0, inSection: 0)
+    var selectedRange:NSIndexPath = NSIndexPath(forItem: 0, inSection: 0) //range of slider
+    
+    var savedRange:String = "" //user saved range
+    var shouldPlayRange = false
+    var increaseWhilePlayingRange = true
+    var startRange = 0.0
+    var endRange = 0.0
     
     var upTimer:NSTimer!
     var downTimer:NSTimer!
+    var rangeTimer:NSTimer? = nil
 
     var whitePlayer = AVAudioPlayer()
     var pinkPlayer = AVAudioPlayer()
@@ -50,20 +73,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var saveTable: UITableView!
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after load
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "deviceDidRotate:", name: UIDeviceOrientationDidChangeNotification, object: nil)
-        
-        //sets background image view
-        let backImageView = UIImageView(frame: self.view.bounds)
-        backImageView.image = UIImage(named: "background.jpg")
-        self.view.addSubview(backImageView)
-        self.view.sendSubviewToBack(backImageView)
-        
         //view over background image to create fade effect over background
         //1 = mainView
         //2 = tableView
@@ -74,7 +87,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //button & slider set-up
         playButton.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
         currentFreq.textColor = UIColor.blackColor()
-        //saveButton.setTitleColor(UIColor.blueColor(), forState: UIControlState.Normal)
         currentFreq.text = "50.0"
         
         //synthesiser set-up
@@ -114,22 +126,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func deviceDidRotate(notification:NSNotification) {
-        let background = self.view.subviews[0]
-        background.frame = self.view.bounds
-    }
-    
     @IBAction func ButtonPress(sender: AnyObject) {
         if (sender.titleLabel!!.text == "Play") {
             sender.setTitle("Stop", forState: .Normal)
             sender.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
             musicMan.togglePlay()
+            if shouldPlayRange {
+                playRange()
+            }
         } else if sender.titleLabel!!.text == "Stop"{
             sender.setTitle("Play", forState: .Normal)
             sender.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
             musicMan.togglePlay()
+            if shouldPlayRange {
+                rangeTimer?.invalidate()
+                rangeTimer = nil
+            }
         } else if sender.titleLabel!!.text == "Save Frequency" {
             masterpieces.insert(currentFreq.text!)
+            saveTable.reloadData()
+        } else if sender.titleLabel!!.text == "Save Range" {
+            sender.setTitle("End Save Range", forState: .Normal)
+            savedRange = currentFreq.text!
+        } else if sender.titleLabel!!.text == "End Save Range" {
+            if Double(currentFreq.text!) < Double(savedRange) {
+                let temp = savedRange
+                savedRange = currentFreq.text! + "-" + temp
+            } else {
+                savedRange += "-" + currentFreq.text!
+            }
+            masterpieces.insert(savedRange)
+            sender.setTitle("Save Range", forState: .Normal)
             saveTable.reloadData()
         } else if sender.titleLabel!!.text == "▶️" {
             upTimer = NSTimer(timeInterval: NSTimeInterval(0.2), target: self, selector: "upHeldDown:", userInfo: nil, repeats: true)
@@ -137,12 +164,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             musicMan.setFrequency(Double(slider.value))
             currentFreq.text = "\(slider.value)"
             NSRunLoop.currentRunLoop().addTimer(upTimer, forMode: NSDefaultRunLoopMode)
+            rangeTimer?.invalidate()
+            rangeTimer = nil
         } else if sender.titleLabel!!.text == "◀️" {
             downTimer = NSTimer(timeInterval: NSTimeInterval(0.2), target: self, selector: "downHeldDown:", userInfo: nil, repeats: true)
             slider.value -= 0.5
             currentFreq.text = "\(slider.value)"
             musicMan.setFrequency(Double(slider.value))
             NSRunLoop.currentRunLoop().addTimer(downTimer, forMode: NSDefaultRunLoopMode)
+            rangeTimer?.invalidate()
+            rangeTimer = nil
         } else if sender.titleLabel!!.text == "White Noise" {
             if pinkPlayer.playing {
                 pinkPlayer.stop()
@@ -164,16 +195,45 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
-    func upHeldDown(sender:AnyObject) {
-        slider.value += 0.5
+    func setRange(first: Double, second: Double) {
+        self.startRange = first
+        self.endRange = second
+    }
+    
+    func playRange() {
+        if rangeTimer == nil {
+            rangeTimer = NSTimer(timeInterval: NSTimeInterval(0.2), target: self, selector: "rangeHelper:", userInfo: nil, repeats: true)
+            NSRunLoop.currentRunLoop().addTimer(rangeTimer!, forMode: NSDefaultRunLoopMode)
+        }
+    }
+    
+    func rangeHelper(sender:AnyObject) {
+        if increaseWhilePlayingRange {
+            upHeldDown(self)
+            if slider.value >= Float(endRange) {
+                increaseWhilePlayingRange = false
+            }
+        } else {
+            downHeldDown(self)
+            if slider.value <= Float(startRange) {
+                increaseWhilePlayingRange = true
+            }
+        }
+    }
+    
+    func changeFreq(rate:Float) {
+        slider.value += rate
         musicMan.setFrequency(Double(slider.value))
+    }
+    
+    func upHeldDown(sender:AnyObject) {
+        changeFreq(0.5)
         currentFreq.text = "\(slider.value)"
         
     }
     
     func downHeldDown(sender:AnyObject) {
-        slider.value -= 0.5
-        musicMan.setFrequency(Double(slider.value))
+        changeFreq(-0.5)
         currentFreq.text = "\(slider.value)"
     }
     
@@ -186,8 +246,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     @IBAction func sliderValueChanged(sender: UISlider) {
-        currentFreq.text = "\(sender.value)"
-        musicMan.setFrequency(Double(sender.value))
+        let freq = round(sender.value * 10)/10
+        currentFreq.text = "\(freq)"
+        musicMan.setFrequency(Double(freq))
+        
+        //mangage range player
+        shouldPlayRange = false
+        rangeTimer?.invalidate()
+        rangeTimer = nil
     }
     
     //RangeDelgate
@@ -207,20 +273,37 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         currentFreq.text = "\(slider.value)"
         musicMan.setFrequency(Double(slider.value))
+        rangeTimer?.invalidate()
+        rangeTimer = nil
+        shouldPlayRange = false
     }
     //swipe gesture
     @IBAction func CellSwipe(sender: UISwipeGestureRecognizer) {
         if sender.state == UIGestureRecognizerState.Ended {
-            let point = sender.locationInView(saveTable)
-            let toDeleteIndex = saveTable.indexPathForRowAtPoint(point)
-            if toDeleteIndex != nil {
-                let cell = saveTable.cellForRowAtIndexPath(toDeleteIndex!)
-                let freq = cell!.textLabel?.text
-                cell!.slideOutToRight(0.5){ () in
-                    self.masterpieces.remove(freq!)
-                    self.saveTable.reloadData()
+            if sender.direction == .Right {
+                let point = sender.locationInView(saveTable)
+                let toDeleteIndex = saveTable.indexPathForRowAtPoint(point)
+                if toDeleteIndex != nil {
+                    let cell = saveTable.cellForRowAtIndexPath(toDeleteIndex!)
+                    let freq = cell!.textLabel?.text
+                    cell!.slideOutToRight(0.5){ () in
+                        self.masterpieces.remove(freq!)
+                        self.saveTable.reloadData()
+                    }
+                    cell?.textLabel?.text = ""
                 }
-                cell?.textLabel?.text = ""
+            } else {
+                let point = sender.locationInView(saveTable)
+                let toDeleteIndex = saveTable.indexPathForRowAtPoint(point)
+                if toDeleteIndex != nil {
+                    let cell = saveTable.cellForRowAtIndexPath(toDeleteIndex!)
+                    let freq = cell!.textLabel?.text
+                    cell!.slideOutToLeft(0.5){ () in
+                        self.masterpieces.remove(freq!)
+                        self.saveTable.reloadData()
+                    }
+                    cell?.textLabel?.text = ""
+                }
             }
         }
     }
@@ -229,10 +312,35 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //table stuff
     func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        currentFreq.text = cell?.textLabel?.text
-        let note = (currentFreq.text! as NSString).doubleValue
-        musicMan.setFrequency(note)
-        slider.value = Float(note)
+        if let cellText = cell?.textLabel?.text {
+            currentFreq.text = cellText
+            var firstNumber = ""
+            var secondNumber = ""
+            var afterDash = false
+            for number in cellText.characters {
+                if number == "-" {
+                    afterDash = true
+                } else if !afterDash {
+                    firstNumber += "\(number)"
+                } else {
+                    secondNumber += "\(number)"
+                }
+            }
+            let note = (firstNumber as NSString).doubleValue
+            let note2 = (secondNumber as NSString).doubleValue
+            slider.value = Float(note)
+            musicMan.setFrequency(note)
+            shouldPlayRange = false
+            if afterDash {
+                //if the cell contains a range
+                shouldPlayRange = true
+                setRange(note, second: note2)
+                //if this is already playing
+                if playButton.titleLabel!.text == "Stop" {
+                    playRange()
+                }
+            }
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
