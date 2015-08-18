@@ -51,7 +51,7 @@ extension UIView {
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, RangeDelegate {
     let musicMan = Musician();
     
-    var masterpieces = Set<String>()
+    var masterpieces = Array<(String, String, String, String)>()
     
     var selectedRange:NSIndexPath = NSIndexPath(forItem: 0, inSection: 0) //range of slider
     
@@ -80,6 +80,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //view over background image to create fade effect over background
         //1 = mainView
         //2 = tableView
+        masterpieces.append("Min", "Mid", "Max", "Band")
 
         self.view.viewWithTag(1)?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.55)
         self.view.viewWithTag(2)?.backgroundColor = UIColor.clearColor()
@@ -126,6 +127,19 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    func addData(min:String, max:String = " ") {
+        var mid = " "
+        var band = " "
+        if max != " " {
+            let minNum = Double(min)!
+            let maxNum = Double(max)!
+            mid = String(round(sqrt(minNum * maxNum) * 10) / 10)
+            band = String(round((maxNum - minNum) * 10) / 10)
+        }
+        let toAppend = (min, mid, max, band)
+        masterpieces.append(toAppend)
+    }
+    
     @IBAction func ButtonPress(sender: AnyObject) {
         if (sender.titleLabel!!.text == "Play") {
             sender.setTitle("Stop", forState: .Normal)
@@ -143,33 +157,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 rangeTimer = nil
             }
         } else if sender.titleLabel!!.text == "Save Frequency" {
-            masterpieces.insert(currentFreq.text!)
+            addData(currentFreq.text!)
             saveTable.reloadData()
         } else if sender.titleLabel!!.text == "Save Range" {
             sender.setTitle("End Save Range", forState: .Normal)
             savedRange = currentFreq.text!
         } else if sender.titleLabel!!.text == "End Save Range" {
             if Double(currentFreq.text!) < Double(savedRange) {
-                let temp = savedRange
-                savedRange = currentFreq.text! + "-" + temp
+                addData(currentFreq.text!, max: savedRange)
             } else {
-                savedRange += "-" + currentFreq.text!
+                addData(savedRange, max: currentFreq.text!)
             }
-            masterpieces.insert(savedRange)
             sender.setTitle("Save Range", forState: .Normal)
             saveTable.reloadData()
         } else if sender.titleLabel!!.text == "▶️" {
             upTimer = NSTimer(timeInterval: NSTimeInterval(0.2), target: self, selector: "upHeldDown:", userInfo: nil, repeats: true)
             slider.value += 0.5
             musicMan.setFrequency(Double(slider.value))
-            currentFreq.text = "\(slider.value)"
+            let roundedNum = round(slider.value * 10) / 10
+            currentFreq.text = "\(roundedNum)"
             NSRunLoop.currentRunLoop().addTimer(upTimer, forMode: NSDefaultRunLoopMode)
             rangeTimer?.invalidate()
             rangeTimer = nil
         } else if sender.titleLabel!!.text == "◀️" {
             downTimer = NSTimer(timeInterval: NSTimeInterval(0.2), target: self, selector: "downHeldDown:", userInfo: nil, repeats: true)
             slider.value -= 0.5
-            currentFreq.text = "\(slider.value)"
+            let roundedNum = round(slider.value * 10) / 10
+            currentFreq.text = "\(roundedNum)"
             musicMan.setFrequency(Double(slider.value))
             NSRunLoop.currentRunLoop().addTimer(downTimer, forMode: NSDefaultRunLoopMode)
             rangeTimer?.invalidate()
@@ -283,26 +297,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if sender.direction == .Right {
                 let point = sender.locationInView(saveTable)
                 let toDeleteIndex = saveTable.indexPathForRowAtPoint(point)
-                if toDeleteIndex != nil {
+                let toDeleteDataIndex = toDeleteIndex!.row
+                if toDeleteIndex != nil && toDeleteDataIndex != 0  {
                     let cell = saveTable.cellForRowAtIndexPath(toDeleteIndex!)
-                    let freq = cell!.textLabel?.text
                     cell!.slideOutToRight(0.5){ () in
-                        self.masterpieces.remove(freq!)
+                        self.masterpieces.removeAtIndex(toDeleteDataIndex)
                         self.saveTable.reloadData()
                     }
-                    cell?.textLabel?.text = ""
                 }
             } else {
                 let point = sender.locationInView(saveTable)
                 let toDeleteIndex = saveTable.indexPathForRowAtPoint(point)
-                if toDeleteIndex != nil {
+                let toDeleteDataIndex = toDeleteIndex!.row
+                if toDeleteIndex != nil && toDeleteDataIndex != 0 {
                     let cell = saveTable.cellForRowAtIndexPath(toDeleteIndex!)
-                    let freq = cell!.textLabel?.text
                     cell!.slideOutToLeft(0.5){ () in
-                        self.masterpieces.remove(freq!)
+                        self.masterpieces.removeAtIndex(toDeleteDataIndex)
                         self.saveTable.reloadData()
                     }
-                    cell?.textLabel?.text = ""
                 }
             }
         }
@@ -311,35 +323,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     //table stuff
     func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if let cellText = cell?.textLabel?.text {
-            currentFreq.text = cellText
-            var firstNumber = ""
-            var secondNumber = ""
-            var afterDash = false
-            for number in cellText.characters {
-                if number == "-" {
-                    afterDash = true
-                } else if !afterDash {
-                    firstNumber += "\(number)"
-                } else {
-                    secondNumber += "\(number)"
-                }
+        let data = masterpieces[indexPath.row]
+        let note = (data.0 as NSString).doubleValue
+        let note2 = (data.2 as NSString).doubleValue
+        slider.value = Float(note)
+        musicMan.setFrequency(note)
+        shouldPlayRange = false
+        if data.2 != " " {
+            //if the cell contains a range
+            shouldPlayRange = true
+            setRange(note, second: note2)
+            currentFreq.text = data.0 + " - " + data.2
+            //if this is already playing
+            if playButton.titleLabel!.text == "Stop" {
+                playRange()
             }
-            let note = (firstNumber as NSString).doubleValue
-            let note2 = (secondNumber as NSString).doubleValue
-            slider.value = Float(note)
-            musicMan.setFrequency(note)
-            shouldPlayRange = false
-            if afterDash {
-                //if the cell contains a range
-                shouldPlayRange = true
-                setRange(note, second: note2)
-                //if this is already playing
-                if playButton.titleLabel!.text == "Stop" {
-                    playRange()
-                }
-            }
+        } else {
+            currentFreq.text = data.0
         }
     }
     
@@ -348,8 +348,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var collection = Array(masterpieces)
-        collection.sortInPlace({(string1:String, string2:String) -> (Bool) in
+        masterpieces.sortInPlace({(col1:(String, String, String, String), col2:(String, String, String, String)) -> (Bool) in
+            let string1:String
+            let string2:String
+            //impliment sort by top col selection
+            //impliment least to great/great to least sort
+            string1 = col1.0 // sorts by min from least to greatest
+            string2 = col2.0
             let d1 = (string1 as NSString).doubleValue
             let d2 = (string2 as NSString).doubleValue
             if (d1 < d2) {
@@ -357,13 +362,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             return false
         })
-        let item = collection[indexPath.item]
-        let cell = tableView.dequeueReusableCellWithIdentifier("Frequencies")!
-        let myfont = UIFont(name: "Arial", size: 32)
-        cell.textLabel?.font = myfont
-        cell.textLabel?.text = item
+        let item = masterpieces[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("frequency cell")!
+        let myFont = UIFont(name: "Arial", size: 32)
         cell.backgroundColor = UIColor.clearColor()
-        cell.textLabel?.textAlignment = .Center
+        for i in 0..<4 {
+            let val:String
+            switch i {
+            case 0: val = item.0
+            case 1: val = item.1
+            case 2: val = item.2
+            default: val = item.3
+            }
+            let view = cell.contentView.subviews[i] as! UILabel
+            view.text = val
+            view.font = myFont
+            view.textAlignment = .Center
+        }
         return cell
     }
 }
