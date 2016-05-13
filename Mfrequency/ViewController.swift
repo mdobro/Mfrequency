@@ -74,13 +74,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var saveTable: UITableView!
     
+    override func prefersStatusBarHidden() -> Bool {
+        return true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after load
         //view over background image to create fade effect over background
         //1 = mainView
         //2 = tableView
-        masterpieces.append("Min", "Mid", "Max", "Band")
+        masterpieces.append(("Min", "Mid", "Max", "BW"))
 
         self.view.viewWithTag(1)?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.55)
         self.view.viewWithTag(2)?.backgroundColor = UIColor.clearColor()
@@ -134,7 +138,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             let minNum = Double(min)!
             let maxNum = Double(max)!
             mid = String(round(sqrt(minNum * maxNum) * 10) / 10)
-            band = String(round((maxNum - minNum) * 10) / 10)
+            band = String(round((maxNum - minNum) / Double(mid)! * 1000) / 1000)
         }
         let toAppend = (min, mid, max, band)
         masterpieces.append(toAppend)
@@ -161,6 +165,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             saveTable.reloadData()
         } else if sender.titleLabel!!.text == "Save Range" {
             sender.setTitle("End Save Range", forState: .Normal)
+            sender.setTitleColor(UIColor.redColor(), forState: .Normal)
             savedRange = currentFreq.text!
         } else if sender.titleLabel!!.text == "End Save Range" {
             if Double(currentFreq.text!) < Double(savedRange) {
@@ -169,6 +174,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 addData(savedRange, max: currentFreq.text!)
             }
             sender.setTitle("Save Range", forState: .Normal)
+            sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
             saveTable.reloadData()
         } else if sender.titleLabel!!.text == "▶️" {
             upTimer = NSTimer(timeInterval: NSTimeInterval(0.2), target: self, selector: "upHeldDown:", userInfo: nil, repeats: true)
@@ -207,6 +213,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 pinkPlayer.play()
             }
         }
+    }
+    
+    @IBAction func cancelSaveRange(sender: AnyObject) {
+        sender.setTitle("Save Range", forState: .Normal)
+        sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
     }
     
     func setRange(first: Double, second: Double) {
@@ -297,22 +308,22 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if sender.direction == .Right {
                 let point = sender.locationInView(saveTable)
                 let toDeleteIndex = saveTable.indexPathForRowAtPoint(point)
-                let toDeleteDataIndex = toDeleteIndex!.row
+                let toDeleteDataIndex = toDeleteIndex?.row
                 if toDeleteIndex != nil && toDeleteDataIndex != 0  {
                     let cell = saveTable.cellForRowAtIndexPath(toDeleteIndex!)
                     cell!.slideOutToRight(0.5){ () in
-                        self.masterpieces.removeAtIndex(toDeleteDataIndex)
+                        self.masterpieces.removeAtIndex(toDeleteDataIndex!)
                         self.saveTable.reloadData()
                     }
                 }
             } else {
                 let point = sender.locationInView(saveTable)
                 let toDeleteIndex = saveTable.indexPathForRowAtPoint(point)
-                let toDeleteDataIndex = toDeleteIndex!.row
+                let toDeleteDataIndex = toDeleteIndex?.row
                 if toDeleteIndex != nil && toDeleteDataIndex != 0 {
                     let cell = saveTable.cellForRowAtIndexPath(toDeleteIndex!)
                     cell!.slideOutToLeft(0.5){ () in
-                        self.masterpieces.removeAtIndex(toDeleteDataIndex)
+                        self.masterpieces.removeAtIndex(toDeleteDataIndex!)
                         self.saveTable.reloadData()
                     }
                 }
@@ -324,22 +335,24 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //table stuff
     func tableView(tableView: UITableView, didHighlightRowAtIndexPath indexPath: NSIndexPath) {
         let data = masterpieces[indexPath.row]
-        let note = (data.0 as NSString).doubleValue
-        let note2 = (data.2 as NSString).doubleValue
-        slider.value = Float(note)
-        musicMan.setFrequency(note)
-        shouldPlayRange = false
-        if data.2 != " " {
-            //if the cell contains a range
-            shouldPlayRange = true
-            setRange(note, second: note2)
-            currentFreq.text = data.0 + " - " + data.2
-            //if this is already playing
-            if playButton.titleLabel!.text == "Stop" {
-                playRange()
+        if data.0 != "Min" {
+            let note = (data.0 as NSString).doubleValue
+            let note2 = (data.2 as NSString).doubleValue
+            slider.value = Float(note)
+            musicMan.setFrequency(note)
+            shouldPlayRange = false
+            if data.2 != " " {
+                //if the cell contains a range
+                shouldPlayRange = true
+                setRange(note, second: note2)
+                currentFreq.text = data.0 + " - " + data.2
+                //if this is already playing
+                if playButton.titleLabel!.text == "Stop" {
+                    playRange()
+                }
+            } else {
+                currentFreq.text = data.0
             }
-        } else {
-            currentFreq.text = data.0
         }
     }
     
@@ -380,6 +393,30 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             view.textAlignment = .Center
         }
         return cell
+    }
+
+    //share button
+    @IBAction func shareSheet(sender: AnyObject) {
+        
+        var sendString:String = ""
+        for item in masterpieces {
+            sendString += item.0 + " " + item.1 + " " + item.2 + " " + item.3 + "\n"
+        }
+        print(sendString)
+        let activityViewController : UIActivityViewController = UIActivityViewController(
+            activityItems: [sendString], applicationActivities: nil)
+        
+        // This lines is for the popover you need to show in iPad
+        activityViewController.popoverPresentationController?.barButtonItem = (sender as! UIBarButtonItem)
+        
+        // This line remove the arrow of the popover to show in iPad
+        activityViewController.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection()
+        activityViewController.popoverPresentationController?.sourceRect = CGRect(x: 150, y: 150, width: 0, height: 0)
+        
+        // Anything you want to exclude
+        activityViewController.excludedActivityTypes = []
+        
+        self.presentViewController(activityViewController, animated: true, completion: nil)
     }
 }
 

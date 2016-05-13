@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.20" systemVersion="15A244d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15C40a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.16"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -58,6 +58,11 @@
                                                         <segue destination="d3o-wB-eej" kind="popoverPresentation" identifier="RangeSegue" popoverAnchorBarButtonItem="e5V-6P-3nX" id="Dev-Ej-qeW">
                                                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                                         </segue>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem key="rightBarButtonItem" systemItem="action" id="iaW-3u-G7I">
+                                                    <connections>
+                                                        <action selector="shareSheet:" destination="BYZ-38-t0r" id="EGp-3Q-fJc"/>
                                                     </connections>
                                                 </barButtonItem>
                                             </navigationItem>
@@ -120,6 +125,7 @@
                                         <state key="normal" title="Save Range"/>
                                         <connections>
                                             <action selector="ButtonPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2tT-IE-zIx"/>
+                                            <action selector="cancelSaveRange:" destination="BYZ-38-t0r" eventType="touchDragExit" id="hXc-Rh-IYT"/>
                                         </connections>
                                     </button>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="50" minValue="50" maxValue="500" translatesAutoresizingMaskIntoConstraints="NO" id="FCI-WV-xih" customClass="OBSlider">
@@ -132,18 +138,7 @@
                                             <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="cNP-xF-n4n"/>
                                         </connections>
                                     </slider>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQM-uO-YeL">
-                                        <rect key="frame" x="541" y="96" width="59" height="64"/>
-                                        <animations/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="48"/>
-                                        <state key="normal" title="▶️"/>
-                                        <connections>
-                                            <action selector="ButtonPress:" destination="BYZ-38-t0r" eventType="touchDown" id="zBV-hs-LFZ"/>
-                                            <action selector="releaseVolArrow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6BK-VX-WAq"/>
-                                            <action selector="releaseVolArrow:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="wr9-04-x8s"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6l-aq-xtn">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6l-aq-xtn">
                                         <rect key="frame" x="35" y="169" width="104" height="43"/>
                                         <animations/>
                                         <constraints>
@@ -194,28 +189,28 @@
                                                             <rect key="frame" x="10" y="0.0" width="110" height="21"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mid" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Noa-Rl-wEI" userLabel="Mid">
                                                             <rect key="frame" x="157" y="0.0" width="110" height="21"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hq5-cf-R3U" userLabel="Max">
                                                             <rect key="frame" x="304" y="0.0" width="110" height="21"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Band" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4KW-8i-Zwo" userLabel="Band">
                                                             <rect key="frame" x="451" y="0.0" width="110" height="21"/>
                                                             <animations/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -245,6 +240,17 @@
                                             <outletCollection property="gestureRecognizers" destination="GTw-Rc-TtG" appends="YES" id="pFn-tw-5Zq"/>
                                         </connections>
                                     </tableView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQM-uO-YeL">
+                                        <rect key="frame" x="541" y="96" width="59" height="64"/>
+                                        <animations/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="48"/>
+                                        <state key="normal" title="▶️"/>
+                                        <connections>
+                                            <action selector="ButtonPress:" destination="BYZ-38-t0r" eventType="touchDown" id="zBV-hs-LFZ"/>
+                                            <action selector="releaseVolArrow:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6BK-VX-WAq"/>
+                                            <action selector="releaseVolArrow:" destination="BYZ-38-t0r" eventType="touchUpOutside" id="wr9-04-x8s"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -326,7 +332,6 @@
                     </connections>
                 </swipeGestureRecognizer>
                 <swipeGestureRecognizer direction="right" id="GTw-Rc-TtG" userLabel="Right Table Swipe Gesture Recognizer">
-                    <pressTypeMask key="allowedPressTypes"/>
                     <connections>
                         <action selector="CellSwipe:" destination="BYZ-38-t0r" id="faI-RW-sci"/>
                         <outlet property="delegate" destination="BYZ-38-t0r" id="zZI-MB-xei"/>
