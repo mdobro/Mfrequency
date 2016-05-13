@@ -81,9 +81,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after load
-        //view over background image to create fade effect over background
-        //1 = mainView
-        //2 = tableView
+        // view over background image to create fade effect over background
+        // 1 = mainView
+        // 2 = tableView
         masterpieces.append(("Min", "Mid", "Max", "BW"))
 
         self.view.viewWithTag(1)?.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.55)
@@ -122,11 +122,31 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else {
             print("pink noise file missing!")
         }
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplicationWillResignActiveNotification, object: nil)
+    }
+    
+    func appMovedToBackground() {
+        //make sure slider isn't incrementing
+        musicMan.stop()
+        playButton.setTitle("Play", forState: .Normal)
+        playButton.setTitleColor(.greenColor(), forState: .Normal)
+        if upTimer != nil {
+            upTimer.invalidate()
+        }
+        if downTimer != nil {
+            downTimer.invalidate()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "RangeSegue" {
             let controller = segue.destinationViewController as! RangePopoverViewController
+            controller.delegate = self
+        }
+        else if segue.identifier == "InfoSegue" {
+            let controller = segue.destinationViewController as! InfoViewController
             controller.delegate = self
         }
     }
@@ -155,7 +175,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         } else if sender.titleLabel!!.text == "Stop"{
             sender.setTitle("Play", forState: .Normal)
             sender.setTitleColor(UIColor.greenColor(), forState: UIControlState.Normal)
-            musicMan.togglePlay()
+            musicMan.stop()
             if shouldPlayRange {
                 rangeTimer?.invalidate()
                 rangeTimer = nil
@@ -417,6 +437,23 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         activityViewController.excludedActivityTypes = []
         
         self.presentViewController(activityViewController, animated: true, completion: nil)
+    }
+}
+
+class InfoViewController:UIViewController {
+    
+    var delegate:ViewController!
+    
+    override func viewDidLoad() {
+        self.view.backgroundColor = UIColor(white: 1, alpha: 0.6)
+    }
+    
+    @IBAction func dismiss(sender:AnyObject) {
+        delegate.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
 }
 
