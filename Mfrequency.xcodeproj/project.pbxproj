@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B5A124811D035191004E004B /* KeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A1247F1D035191004E004B /* KeyboardView.xib */; };
+		B5A36A711D11EF1200565915 /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A36A701D11EF1200565915 /* VolumeView.swift */; };
+		B5B3C35A1D074F3F0023A1A1 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3C3591D074F3F0023A1A1 /* KeyboardView.swift */; };
+		B5B3C35C1D0771F10023A1A1 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3C35B1D0771F10023A1A1 /* CalculatorViewController.swift */; };
 		D97C69821B2C757400590068 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97C69811B2C757400590068 /* AppDelegate.swift */; };
 		D97C69841B2C757400590068 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97C69831B2C757400590068 /* ViewController.swift */; };
 		D97C69871B2C757400590068 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D97C69851B2C757400590068 /* Main.storyboard */; };
@@ -35,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B5A1247F1D035191004E004B /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardView.xib; path = ../KeyboardView.xib; sourceTree = "<group>"; };
+		B5A36A701D11EF1200565915 /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeView.swift; sourceTree = "<group>"; };
+		B5B3C3591D074F3F0023A1A1 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		B5B3C35B1D0771F10023A1A1 /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		D97C697C1B2C757400590068 /* Mfrequency.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mfrequency.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D97C69801B2C757400590068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D97C69811B2C757400590068 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,13 +109,17 @@
 		D97C697E1B2C757400590068 /* Mfrequency */ = {
 			isa = PBXGroup;
 			children = (
-				D983CC251B42E603005AA49E /* background.jpg */,
-				D97C69851B2C757400590068 /* Main.storyboard */,
-				D97C69831B2C757400590068 /* ViewController.swift */,
-				D9E27CDC1B6FBC4000397ADC /* RangePopoverViewController.swift */,
 				D97C69811B2C757400590068 /* AppDelegate.swift */,
-				D97C69881B2C757400590068 /* Images.xcassets */,
+				D97C69831B2C757400590068 /* ViewController.swift */,
+				B5B3C3591D074F3F0023A1A1 /* KeyboardView.swift */,
+				B5B3C35B1D0771F10023A1A1 /* CalculatorViewController.swift */,
+				D9E27CDC1B6FBC4000397ADC /* RangePopoverViewController.swift */,
+				B5A36A701D11EF1200565915 /* VolumeView.swift */,
+				D97C69851B2C757400590068 /* Main.storyboard */,
+				B5A1247F1D035191004E004B /* KeyboardView.xib */,
 				D97C698A1B2C757400590068 /* LaunchScreen.xib */,
+				D97C69881B2C757400590068 /* Images.xcassets */,
+				D983CC251B42E603005AA49E /* background.jpg */,
 				D97C697F1B2C757400590068 /* Supporting Files */,
 			);
 			path = Mfrequency;
@@ -198,7 +210,7 @@
 				TargetAttributes = {
 					D97C697B1B2C757400590068 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = D9GZK3CLYY;
+						DevelopmentTeam = RD8E758UAA;
 					};
 					D97C69901B2C757400590068 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -236,6 +248,7 @@
 				D9E27CE41B6FE73D00397ADC /* Pink Noise.wav in Resources */,
 				D97C698C1B2C757400590068 /* LaunchScreen.xib in Resources */,
 				D97C69891B2C757400590068 /* Images.xcassets in Resources */,
+				B5A124811D035191004E004B /* KeyboardView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +269,10 @@
 				D97C69A71B2C89EB00590068 /* toneGen.m in Sources */,
 				D97C69841B2C757400590068 /* ViewController.swift in Sources */,
 				D97C69A31B2C86B600590068 /* OBSlider.m in Sources */,
+				B5B3C35A1D074F3F0023A1A1 /* KeyboardView.swift in Sources */,
 				D97C69821B2C757400590068 /* AppDelegate.swift in Sources */,
+				B5B3C35C1D0771F10023A1A1 /* CalculatorViewController.swift in Sources */,
+				B5A36A711D11EF1200565915 /* VolumeView.swift in Sources */,
 				D9E27CDD1B6FBC4000397ADC /* RangePopoverViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
