@@ -1,0 +1,530 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B53DC1E81D2DAB4200481EF1 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B53DC1E51D2DAB4100481EF1 /* GCDAsyncSocket.m */; };
+		B53DC1E91D2DAB4200481EF1 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B53DC1E71D2DAB4100481EF1 /* GCDAsyncUdpSocket.m */; };
+		B559E35D1D145ED900D18078 /* ProgramSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B559E35C1D145ED900D18078 /* ProgramSettingsViewController.swift */; };
+		B570481A1D2337AE00A819FE /* EqualizerFreqGainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B57048181D2337AE00A819FE /* EqualizerFreqGainView.swift */; };
+		B570481B1D2337AE00A819FE /* EqualizerFreqGainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B57048191D2337AE00A819FE /* EqualizerFreqGainView.xib */; };
+		B5A124811D035191004E004B /* KeyboardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5A1247F1D035191004E004B /* KeyboardView.xib */; };
+		B5A36A711D11EF1200565915 /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A36A701D11EF1200565915 /* VolumeView.swift */; };
+		B5B3C35A1D074F3F0023A1A1 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3C3591D074F3F0023A1A1 /* KeyboardView.swift */; };
+		B5B3C35C1D0771F10023A1A1 /* CalculatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B3C35B1D0771F10023A1A1 /* CalculatorViewController.swift */; };
+		D97C69821B2C757400590068 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97C69811B2C757400590068 /* AppDelegate.swift */; };
+		D97C69841B2C757400590068 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97C69831B2C757400590068 /* ViewController.swift */; };
+		D97C69871B2C757400590068 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D97C69851B2C757400590068 /* Main.storyboard */; };
+		D97C69891B2C757400590068 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D97C69881B2C757400590068 /* Images.xcassets */; };
+		D97C698C1B2C757400590068 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97C698A1B2C757400590068 /* LaunchScreen.xib */; };
+		D97C69981B2C757400590068 /* MfrequencyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97C69971B2C757400590068 /* MfrequencyTests.swift */; };
+		D97C69A31B2C86B600590068 /* OBSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D97C69A21B2C86B600590068 /* OBSlider.m */; };
+		D97C69A71B2C89EB00590068 /* toneGen.m in Sources */ = {isa = PBXBuildFile; fileRef = D97C69A61B2C89EB00590068 /* toneGen.m */; };
+		D97C69AB1B2C97E000590068 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D97C69AA1B2C97E000590068 /* CoreAudio.framework */; };
+		D97C69AF1B2C98D300590068 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D97C69AE1B2C98D300590068 /* AudioToolbox.framework */; };
+		D983CC261B42E603005AA49E /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D983CC251B42E603005AA49E /* background.jpg */; };
+		D9E27CDD1B6FBC4000397ADC /* RangePopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E27CDC1B6FBC4000397ADC /* RangePopoverViewController.swift */; };
+		D9E27CE41B6FE73D00397ADC /* Pink Noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = D9E27CE21B6FE73D00397ADC /* Pink Noise.wav */; };
+		D9E27CE51B6FE73D00397ADC /* White Noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = D9E27CE31B6FE73D00397ADC /* White Noise.wav */; };
+		D9E27CE71B700AF100397ADC /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E27CE61B700AF100397ADC /* AVFoundation.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D97C69921B2C757400590068 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D97C69741B2C757400590068 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D97C697B1B2C757400590068;
+			remoteInfo = Mfrequency;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B53DC1E41D2DAB4100481EF1 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
+		B53DC1E51D2DAB4100481EF1 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
+		B53DC1E61D2DAB4100481EF1 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		B53DC1E71D2DAB4100481EF1 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		B559E35C1D145ED900D18078 /* ProgramSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgramSettingsViewController.swift; sourceTree = "<group>"; };
+		B57048181D2337AE00A819FE /* EqualizerFreqGainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EqualizerFreqGainView.swift; sourceTree = "<group>"; };
+		B57048191D2337AE00A819FE /* EqualizerFreqGainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EqualizerFreqGainView.xib; sourceTree = "<group>"; };
+		B58BB5231E010ABE00206DE4 /* ω FinderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ω FinderTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5A1247F1D035191004E004B /* KeyboardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = KeyboardView.xib; path = ../KeyboardView.xib; sourceTree = "<group>"; };
+		B5A36A701D11EF1200565915 /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeView.swift; sourceTree = "<group>"; };
+		B5B24A161DD01FBA009EED79 /* ω Finder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ω Finder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5B3C3591D074F3F0023A1A1 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		B5B3C35B1D0771F10023A1A1 /* CalculatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
+		D97C69801B2C757400590068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D97C69811B2C757400590068 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D97C69831B2C757400590068 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D97C69861B2C757400590068 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D97C69881B2C757400590068 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D97C698B1B2C757400590068 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D97C69961B2C757400590068 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D97C69971B2C757400590068 /* MfrequencyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MfrequencyTests.swift; sourceTree = "<group>"; };
+		D97C69A11B2C86B600590068 /* OBSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBSlider.h; sourceTree = "<group>"; };
+		D97C69A21B2C86B600590068 /* OBSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBSlider.m; sourceTree = "<group>"; };
+		D97C69A41B2C86EA00590068 /* ω Finder-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "ω Finder-Bridging-Header.h"; path = "../ω Finder-Bridging-Header.h"; sourceTree = "<group>"; };
+		D97C69A51B2C89CC00590068 /* toneGen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toneGen.h; sourceTree = "<group>"; };
+		D97C69A61B2C89EB00590068 /* toneGen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = toneGen.m; sourceTree = "<group>"; };
+		D97C69AA1B2C97E000590068 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		D97C69AE1B2C98D300590068 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D983CC251B42E603005AA49E /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = Images.xcassets/background.jpg; sourceTree = "<group>"; };
+		D9E27CDC1B6FBC4000397ADC /* RangePopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangePopoverViewController.swift; sourceTree = "<group>"; };
+		D9E27CE21B6FE73D00397ADC /* Pink Noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "Pink Noise.wav"; path = "../Pink Noise.wav"; sourceTree = "<group>"; };
+		D9E27CE31B6FE73D00397ADC /* White Noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = "White Noise.wav"; path = "../White Noise.wav"; sourceTree = "<group>"; };
+		D9E27CE61B700AF100397ADC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D97C69791B2C757400590068 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9E27CE71B700AF100397ADC /* AVFoundation.framework in Frameworks */,
+				D97C69AF1B2C98D300590068 /* AudioToolbox.framework in Frameworks */,
+				D97C69AB1B2C97E000590068 /* CoreAudio.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D97C698E1B2C757400590068 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D97C69731B2C757400590068 = {
+			isa = PBXGroup;
+			children = (
+				D97C697E1B2C757400590068 /* ω Finder */,
+				D97C69941B2C757400590068 /* ω FinderTests */,
+				B5B24A161DD01FBA009EED79 /* ω Finder.app */,
+				B58BB5231E010ABE00206DE4 /* ω FinderTests.xctest */,
+			);
+			sourceTree = "<group>";
+		};
+		D97C697E1B2C757400590068 /* ω Finder */ = {
+			isa = PBXGroup;
+			children = (
+				D97C69811B2C757400590068 /* AppDelegate.swift */,
+				D97C69831B2C757400590068 /* ViewController.swift */,
+				B57048181D2337AE00A819FE /* EqualizerFreqGainView.swift */,
+				B559E35C1D145ED900D18078 /* ProgramSettingsViewController.swift */,
+				B5B3C3591D074F3F0023A1A1 /* KeyboardView.swift */,
+				B5B3C35B1D0771F10023A1A1 /* CalculatorViewController.swift */,
+				D9E27CDC1B6FBC4000397ADC /* RangePopoverViewController.swift */,
+				B5A36A701D11EF1200565915 /* VolumeView.swift */,
+				D97C69851B2C757400590068 /* Main.storyboard */,
+				B57048191D2337AE00A819FE /* EqualizerFreqGainView.xib */,
+				B5A1247F1D035191004E004B /* KeyboardView.xib */,
+				D97C698A1B2C757400590068 /* LaunchScreen.xib */,
+				D97C69881B2C757400590068 /* Images.xcassets */,
+				D983CC251B42E603005AA49E /* background.jpg */,
+				D97C697F1B2C757400590068 /* Supporting Files */,
+			);
+			path = "ω Finder";
+			sourceTree = "<group>";
+		};
+		D97C697F1B2C757400590068 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B53DC1E41D2DAB4100481EF1 /* GCDAsyncSocket.h */,
+				B53DC1E51D2DAB4100481EF1 /* GCDAsyncSocket.m */,
+				B53DC1E61D2DAB4100481EF1 /* GCDAsyncUdpSocket.h */,
+				B53DC1E71D2DAB4100481EF1 /* GCDAsyncUdpSocket.m */,
+				D9E27CE21B6FE73D00397ADC /* Pink Noise.wav */,
+				D9E27CE31B6FE73D00397ADC /* White Noise.wav */,
+				D97C69A51B2C89CC00590068 /* toneGen.h */,
+				D97C69A61B2C89EB00590068 /* toneGen.m */,
+				D97C69A11B2C86B600590068 /* OBSlider.h */,
+				D97C69A21B2C86B600590068 /* OBSlider.m */,
+				D97C69801B2C757400590068 /* Info.plist */,
+				D97C69A41B2C86EA00590068 /* ω Finder-Bridging-Header.h */,
+				D9E27CE61B700AF100397ADC /* AVFoundation.framework */,
+				D97C69AE1B2C98D300590068 /* AudioToolbox.framework */,
+				D97C69AA1B2C97E000590068 /* CoreAudio.framework */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D97C69941B2C757400590068 /* ω FinderTests */ = {
+			isa = PBXGroup;
+			children = (
+				D97C69971B2C757400590068 /* MfrequencyTests.swift */,
+				D97C69951B2C757400590068 /* Supporting Files */,
+			);
+			path = "ω FinderTests";
+			sourceTree = "<group>";
+		};
+		D97C69951B2C757400590068 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D97C69961B2C757400590068 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D97C697B1B2C757400590068 /* ω Finder */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D97C699B1B2C757400590068 /* Build configuration list for PBXNativeTarget "ω Finder" */;
+			buildPhases = (
+				D97C69781B2C757400590068 /* Sources */,
+				D97C69791B2C757400590068 /* Frameworks */,
+				D97C697A1B2C757400590068 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ω Finder";
+			productName = Mfrequency;
+			productReference = B5B24A161DD01FBA009EED79 /* ω Finder.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D97C69901B2C757400590068 /* ω FinderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D97C699E1B2C757400590068 /* Build configuration list for PBXNativeTarget "ω FinderTests" */;
+			buildPhases = (
+				D97C698D1B2C757400590068 /* Sources */,
+				D97C698E1B2C757400590068 /* Frameworks */,
+				D97C698F1B2C757400590068 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D97C69931B2C757400590068 /* PBXTargetDependency */,
+			);
+			name = "ω FinderTests";
+			productName = MfrequencyTests;
+			productReference = B58BB5231E010ABE00206DE4 /* ω FinderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D97C69741B2C757400590068 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = CAEN;
+				TargetAttributes = {
+					D97C697B1B2C757400590068 = {
+						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = RD8E758UAA;
+						LastSwiftMigration = 0800;
+					};
+					D97C69901B2C757400590068 = {
+						CreatedOnToolsVersion = 6.3.2;
+						LastSwiftMigration = 0800;
+						TestTargetID = D97C697B1B2C757400590068;
+					};
+				};
+			};
+			buildConfigurationList = D97C69771B2C757400590068 /* Build configuration list for PBXProject "ω Finder" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D97C69731B2C757400590068;
+			productRefGroup = D97C69731B2C757400590068;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D97C697B1B2C757400590068 /* ω Finder */,
+				D97C69901B2C757400590068 /* ω FinderTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D97C697A1B2C757400590068 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D9E27CE51B6FE73D00397ADC /* White Noise.wav in Resources */,
+				D97C69871B2C757400590068 /* Main.storyboard in Resources */,
+				D983CC261B42E603005AA49E /* background.jpg in Resources */,
+				D9E27CE41B6FE73D00397ADC /* Pink Noise.wav in Resources */,
+				D97C698C1B2C757400590068 /* LaunchScreen.xib in Resources */,
+				B570481B1D2337AE00A819FE /* EqualizerFreqGainView.xib in Resources */,
+				D97C69891B2C757400590068 /* Images.xcassets in Resources */,
+				B5A124811D035191004E004B /* KeyboardView.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D97C698F1B2C757400590068 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D97C69781B2C757400590068 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B53DC1E81D2DAB4200481EF1 /* GCDAsyncSocket.m in Sources */,
+				D97C69A71B2C89EB00590068 /* toneGen.m in Sources */,
+				B570481A1D2337AE00A819FE /* EqualizerFreqGainView.swift in Sources */,
+				D97C69841B2C757400590068 /* ViewController.swift in Sources */,
+				D97C69A31B2C86B600590068 /* OBSlider.m in Sources */,
+				B5B3C35A1D074F3F0023A1A1 /* KeyboardView.swift in Sources */,
+				D97C69821B2C757400590068 /* AppDelegate.swift in Sources */,
+				B5B3C35C1D0771F10023A1A1 /* CalculatorViewController.swift in Sources */,
+				B5A36A711D11EF1200565915 /* VolumeView.swift in Sources */,
+				B559E35D1D145ED900D18078 /* ProgramSettingsViewController.swift in Sources */,
+				B53DC1E91D2DAB4200481EF1 /* GCDAsyncUdpSocket.m in Sources */,
+				D9E27CDD1B6FBC4000397ADC /* RangePopoverViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D97C698D1B2C757400590068 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D97C69981B2C757400590068 /* MfrequencyTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D97C69931B2C757400590068 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D97C697B1B2C757400590068 /* ω Finder */;
+			targetProxy = D97C69921B2C757400590068 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D97C69851B2C757400590068 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D97C69861B2C757400590068 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D97C698A1B2C757400590068 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D97C698B1B2C757400590068 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D97C69991B2C757400590068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "ω Finder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D97C699A1B2C757400590068 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "ω Finder-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D97C699C1B2C757400590068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CAEN.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ω Finder-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		D97C699D1B2C757400590068 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "$(PROJECT_NAME)/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CAEN.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "ω Finder-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		D97C699F1B2C757400590068 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MfrequencyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CAEN.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ω Finder.app/ω Finder";
+			};
+			name = Debug;
+		};
+		D97C69A01B2C757400590068 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MfrequencyTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "CAEN.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ω Finder.app/ω Finder";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D97C69771B2C757400590068 /* Build configuration list for PBXProject "ω Finder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97C69991B2C757400590068 /* Debug */,
+				D97C699A1B2C757400590068 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D97C699B1B2C757400590068 /* Build configuration list for PBXNativeTarget "ω Finder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97C699C1B2C757400590068 /* Debug */,
+				D97C699D1B2C757400590068 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D97C699E1B2C757400590068 /* Build configuration list for PBXNativeTarget "ω FinderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97C699F1B2C757400590068 /* Debug */,
+				D97C69A01B2C757400590068 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D97C69741B2C757400590068 /* Project object */;
+}
